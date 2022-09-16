@@ -1,4 +1,4 @@
-from event_management_project.users.models import User
+from event_management_project.users1.models import User
 
 
 def test_user_get_absolute_url(user: User):

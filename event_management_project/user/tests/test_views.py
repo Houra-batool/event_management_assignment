@@ -8,10 +8,10 @@ from django.http import HttpRequest, HttpResponseRedirect
 from django.test import RequestFactory
 from django.urls import reverse
 
-from event_management_project.users.forms import UserAdminChangeForm
-from event_management_project.users.models import User
-from event_management_project.users.tests.factories import UserFactory
-from event_management_project.users.views import (
+from event_management_project.users1.forms import UserAdminChangeForm
+from event_management_project.users1.models import User
+from event_management_project.users1.tests.factories import UserFactory
+from event_management_project.users1.views import (
     UserRedirectView,
     UserUpdateView,
     user_detail_view,

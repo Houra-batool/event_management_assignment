@@ -29,3 +29,4 @@ if __name__ == "__main__":
     sys.path.append(str(current_path / "event_management_project"))
 
     execute_from_command_line(sys.argv)
+

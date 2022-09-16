@@ -1,6 +1,6 @@
 from django.urls import reverse
 
-from event_management_project.users.models import User
+from event_management_project.users1.models import User
 
 
 class TestUserAdmin:
