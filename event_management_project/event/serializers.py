@@ -6,10 +6,10 @@ from user.api.serializers import UserSerializer
 
 class EventSerializer(serializers.ModelSerializer):
     
-    #owner =  serializers.HiddenField(default=serializers.CurrentUserDefault())
     
-    owner = UserSerializer(read_only=True)
-    attendee = UserSerializer(many=True)
+    
+    owner = UserSerializer(read_only=True) #nested serialize use to save user complete object
+    attendee = UserSerializer(many=True)#nested serialize use to save user save complte object
 
     class Meta:
         model = Events

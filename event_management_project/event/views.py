@@ -17,7 +17,7 @@ class ListEvent(generics.ListAPIView):
 
     def get_queryset(self):
         queryset = Events.objects.all()
-    # Set up eager loading to avoid N+1 selects
+    # setup_eager_loading method enhance performance
         queryset = self.get_serializer_class().setup_eager_loading(queryset)  
         return queryset
 
