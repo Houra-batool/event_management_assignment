@@ -1,4 +1,4 @@
-from rest_framework import  generics
+from rest_framework import  generics, permissions
 from rest_framework.response import Response
 from .models import Events
 from . serializers import *
@@ -10,6 +10,10 @@ class ListEvent(generics.ListAPIView):
     serializer_class = EventSerializer
     
     #permission here
+    permission_classes = [
+      permissions.AllowAny ]
+
+
     def get_queryset(self):
         queryset = Events.objects.all()
     # Set up eager loading to avoid N+1 selects
@@ -45,6 +49,8 @@ class CreateEvent(generics.CreateAPIView):
 class DeleteEvent(generics.DestroyAPIView):
     serializer_class = UpdateEventSerializer
     #permission here
+    permission_classes = [
+       permissions.IsAuthenticated ]
 
 
     def get_queryset(self):
@@ -68,6 +74,8 @@ class DeleteEvent(generics.DestroyAPIView):
 class UpdateEvent(generics.UpdateAPIView):
     serializer_class =   UpdateEventSerializer
     #permission here
+    permission_classes = [
+       permissions.IsAuthenticated ]
 
 
     def get_queryset(self):
