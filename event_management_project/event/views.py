@@ -2,6 +2,7 @@ from rest_framework import  generics, permissions
 from rest_framework.response import Response
 from .models import Events
 from . serializers import *
+from . ownerpermissions import OwnerPermission
 
 
 #retrive all events
@@ -45,12 +46,13 @@ class CreateEvent(generics.CreateAPIView):
 
 
 
-#delete any event 
+#only owner can deleted event
 class DeleteEvent(generics.DestroyAPIView):
     serializer_class = UpdateEventSerializer
     #permission here
     permission_classes = [
-       permissions.IsAuthenticated ]
+       permissions.IsAuthenticated & 
+                     OwnerPermission ]
 
 
     def get_queryset(self):
@@ -70,12 +72,13 @@ class DeleteEvent(generics.DestroyAPIView):
 
 
     
-#update any event    
+#onlu owner can update event
 class UpdateEvent(generics.UpdateAPIView):
     serializer_class =   UpdateEventSerializer
     #permission here
     permission_classes = [
-       permissions.IsAuthenticated ]
+       permissions.IsAuthenticated & 
+                    OwnerPermission ]
 
 
     def get_queryset(self):
