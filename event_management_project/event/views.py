@@ -100,3 +100,32 @@ class UpdateEvent(generics.UpdateAPIView):
 
         else:
             return Response({"message": "failed", "details": serializer.errors,})
+
+
+
+# AttendEvent
+class AttendEvent(generics.UpdateAPIView):
+    
+    serializer_class = AttendEventSerializer
+    permission_classes = [  permissions.IsAuthenticated & 
+                    OwnerPermission ]
+
+    lookup_field = 'pk'
+
+    def get_queryset(self):
+        queryset = Events.objects.all()
+        return queryset
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        data= request.data
+        
+        serializer = self.get_serializer(instance, data=data, partial=True)
+        
+        if serializer.is_valid():
+            serializer.save()
+            
+            return Response({"message":"Event updated successfully!"})
+
+        else:
+            return Response({"message": "failed", "details": serializer.errors,})

@@ -9,12 +9,11 @@ class EventSerializer(serializers.ModelSerializer):
     
     
     owner = UserSerializer(read_only=True) #nested serialize use to save user complete object
-    attendee = UserSerializer(many=True)#nested serialize use to save user save complte object
-
+    
     class Meta:
         model = Events
         fields = ('title', 'description', 'event_date', 
-                    'location', 'owner','attendee')
+                    'location', 'owner',)
 
         depth=1
         
@@ -58,3 +57,21 @@ class UpdateEventSerializer(serializers.ModelSerializer):
         
 
         return queryset
+
+
+
+
+class AttendEventSerializer(serializers.ModelSerializer):
+    attendee = UserSerializer(many=True)
+     
+    class Meta:
+        model = Events
+        fields = ('attendee',)
+        extra_kwargs = {
+             "attendee" : { 'required':False},
+              }
+
+    
+    attendee = serializers.ListField()
+
+    
